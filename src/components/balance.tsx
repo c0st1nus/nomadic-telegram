@@ -44,7 +44,7 @@ const Balance: React.FC<BalanceProps> = ({ leftIcon, amount, onClick }) => {
         <BalanceButton onClick={onClick}>
             <Icon src={leftIcon} alt="left icon" />
             <Amount>{amount}</Amount>
-            <Icon src="/plus.svg" alt="right icon" />
+            <Icon src="/Bag.svg" alt="right icon" />
         </BalanceButton>
     );  
 };

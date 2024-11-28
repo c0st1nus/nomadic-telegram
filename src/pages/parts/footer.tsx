@@ -1,18 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer` 
     padding: 0;
-    border-top-left-radius: 10%;
-    border-top-right-radius: 10%;
+    border-top-left-radius: 5vh;
+    border-top-right-radius: 5vh;
     position: sticky;
     bottom: 0;
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 2vh;
-    backdrop-filter: blur(1vh);
-    background: rgba(174, 195, 224, 0.3);
+    background: white;
     z-index: 100;
 `;
 
@@ -51,21 +51,33 @@ const Icon = styled.img<IconProps>`
     opacity: 0.8;
 `;
 
+interface Icon {
+    src: string;
+    link: string;
+    alt: string;
+    size?: string | "3vh";
+}
+
+interface FooterProps {
+    currentPage?: string;
+    Icons: Icon[];
+    onChange: (page: string) => void;
+}
 
 
-
-const Footer = () => {
+export const Footer = ({...props}: FooterProps) => {
+    const navigate = useNavigate();
     return (
         <StyledFooter>
-            <IconButton onClick={() => console.log('button 1 clicked')}>
-                <Icon src="/close.svg" alt="icon 1" size="6vh"/>
+            {}
+        {props.Icons.map((icon, index) => (
+            <IconButton key={index} onClick={() => {
+                props.onChange(index.toString());
+                navigate(icon.link);
+            }}>
+                <Icon src={icon.src} alt={icon.alt} size={icon.size || "3vh"} />
             </IconButton>
-            <IconButton onClick={() => console.log('button 2 clicked')}>
-                <Icon src="/home.svg" alt="icon 2" size='5vh'/>
-            </IconButton>
-            <IconButton onClick={() => console.log('button 3 clicked')}>
-                <Icon src="/settings.svg" alt="icon 3" size="6vh"/>
-            </IconButton>
+        ))}
         </StyledFooter>
     );
 };

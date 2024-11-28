@@ -73,7 +73,7 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
-const Button = ({ children, ...props }: ButtonProps) => (
+const Button = ({ children, ...props }: ButtonProps) => ( 
   <StyledButton {...defaultProps} {...props}>
     {children}
   </StyledButton>
