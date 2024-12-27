@@ -1,57 +1,41 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface ParagraphProps {
+    children?: React.ReactNode;
     size?: string;
-    textAlign?: 'left' | 'center' | 'right';
-    color?: string;
-    position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
-    marginTop?: string;
-    marginBottom?: string;
-    marginLeft?: string;
-    marginRight?: string;
+    textColor?: string;
+    fontWeight?: string;
+    textAlign?: string;
+    selfAlign?: string;
     margin?: string;
-    paddingTop?: string;
-    paddingBottom?: string;
-    paddingLeft?: string;
-    paddingRight?: string;
     padding?: string;
-    children: React.ReactNode;
-    text_align?: string;
-}
+    position?: string;
+};
 
-const defaultProps: Partial<ParagraphProps> = {
-    size: '1rem',
-    textAlign: 'left',
-    color: 'black',
-    position: 'static',
-    marginTop: '0',
-    marginBottom: '0',
-    marginLeft: '0',
-    marginRight: '0',
-    paddingTop: '0',
-    paddingBottom: '0',
-    paddingLeft: '0',
-    paddingRight: '0',
-    text_align: 'left',
+const DefaultProps: Partial<ParagraphProps> = {
+    size: "1rem",
+    selfAlign: "center",
+    textColor: "#000000",
+    fontWeight: "400",
+    textAlign: "left",
+    margin: "0",
+    padding: "0",
+    position: "static",
 };
 
 const StyledParagraph = styled.p<ParagraphProps>`
-    position: ${({ position }) => position};
     font-size: ${({ size }) => size};
+    color: ${({ textColor }) => textColor};
+    font-weight: ${({ fontWeight }) => fontWeight};
     text-align: ${({ textAlign }) => textAlign};
-    color: ${({ color }) => color};
-    margin: ${({ margin, marginTop, marginBottom, marginLeft, marginRight }) =>
-        margin ? margin : `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`};
-    padding: ${({ padding, paddingTop, paddingBottom, paddingLeft, paddingRight }) =>
-        padding ? padding : `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`};
-    z-index: 3;
-    text-align: ${({ text_align }) => text_align};
+    margin: ${({ margin }) => margin};
+    padding: ${({ padding }) => padding};
+    position: ${({ position }) => position};
+    align-self: ${({ selfAlign }) => selfAlign};
 `;
 
-const Paragraph = ({ children, ...props }: ParagraphProps) => (
-    <StyledParagraph {...defaultProps} {...props}>
-        {children}
-    </StyledParagraph>
-);
+const Paragraph = ({...props}) => {
+    return <StyledParagraph {...DefaultProps} {...props} />;
+};
 
 export default Paragraph;

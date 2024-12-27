@@ -1,16 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { MainPage } from "./pages/main_page";
-import Story from "./pages/story_page";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
-import Footer from "../src/pages/parts/footer";
-import AnimatedBackground from "./components/animated_background";
+
+import MainPage from "./pages/MainPage";
 
 declare global {
-  interface Window {
-      Telegram: any;
-  }
+    interface Window {
+        Telegram: any;
+    }
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -18,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Lena';
     src: url('/Lena.ttf') format('truetype');
   }
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -31,7 +30,6 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #A69A69;
     overflow: hidden;
     position: relative;
     font-family: 'Lena', sans-serif;
@@ -39,16 +37,16 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const MainApp = styled.div`
+const MainPlane = styled.div`
   overscroll-behavior-y: none;
   position: relative;
-  border-left: rgba(0, 0, 0, 0.3) solid 0.4vh;
-  border-right: rgba(0, 0, 0, 0.3) solid 0.4vh;
   align-self: center;
   padding: 0;
   margin: 0;
+  overflow-y: scroll;
+  max-width: calc(92.433vh * (9 / 16));
   height: 100vh;
-  width: calc(100vh * (9 / 16));
+  /* width: calc(100vh * (9 / 16)); */
   z-index: 1;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -59,29 +57,15 @@ const MainApp = styled.div`
   }
 `;
 
-const BackgroundHead = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 34vh;
-  background-image: linear-gradient(to bottom, #111111, #313131);
-  z-index: -1;
-`;
-
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <GlobalStyle />
-    <AnimatedBackground />
+createRoot(document.getElementById("root") as HTMLElement).render(
+    <React.StrictMode>
+      <GlobalStyle />
       <BrowserRouter>
-      <MainApp>
-        <BackgroundHead />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/story/:id" element={<Story />} />
-        </Routes>
-        <Footer Icons={['/Home.svg', '/Heart.svg', '/Bag.svg', '/Notification.svg'] Link}/>
-      </MainApp>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+        <MainPlane>
+          <Routes>
+            <Route path="*" element={<MainPage />} />
+          </Routes>
+        </MainPlane>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
