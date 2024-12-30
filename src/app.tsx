@@ -1,9 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider, Navigate} from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import MainPage from "./pages/MainPage";
+import { Cart, Favourite, Home, Notification } from "./pages/Menu";
+import { Navbar } from "./components";
 
 declare global {
     interface Window {
@@ -57,15 +59,33 @@ const MainPlane = styled.div`
   }
 `;
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/home" replace />,
+    errorElement: <div>dsaddada</div>,
+  },
+  {
+    path: "/home",
+    element: <MainPlane><Home /><Navbar/></MainPlane>,
+  },
+  {
+    path: "/favourite",
+    element: <MainPlane><Favourite /><Navbar/></MainPlane>,
+  },
+  {
+    path: "/cart",
+    element: <MainPlane><Cart /> <Navbar/> </MainPlane>,
+  },
+  {
+    path: "/notification",
+    element: <MainPlane><Notification /><Navbar/></MainPlane>,
+  }
+]);
+
 createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
       <GlobalStyle />
-      <BrowserRouter>
-        <MainPlane>
-          <Routes>
-            <Route path="*" element={<MainPage />} />
-          </Routes>
-        </MainPlane>
-      </BrowserRouter>
+      <RouterProvider router={router}/>
     </React.StrictMode>
   );
