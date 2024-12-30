@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledNavbar = styled.div`
   position: sticky;
-  width: 380px;
+  width: 100%;
   bottom: 0;
   display: flex;
   justify-content: space-around;
