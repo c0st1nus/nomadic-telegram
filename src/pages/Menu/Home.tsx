@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Paragraph, SearchBar, Story } from "../../components";
 
@@ -87,13 +88,14 @@ const StyledStories = styled.div`
     margin-top: 2vh;
 `;
 
-const StyledStory = styled.div`
+const StyledStory = styled(NavLink)`
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 1rem;
     border: 1px solid #0000002f;
     padding: 1rem;
+    text-decoration: none;
 `;
 
 const Home = () => {
@@ -168,7 +170,7 @@ const Home = () => {
             </StyledCategories>
             <StyledStories>
                 {stories.map((story) => (
-                    <StyledStory key={story.id}>
+                    <StyledStory to={`/story/${story.id}`} key={story.id}>
                         <Story 
                           image={story.image}
                           title={story.title}

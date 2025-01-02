@@ -36,7 +36,7 @@ const Navbar = () => {
     ];
     return (
     <StyledNavbar>
-        {buttons.map((button, index) => (
+        {buttons.map((button) => (
         <StyledLink key={button.name} to={button.path} style={{ backgroundColor: button.path.includes(useLocation().pathname) ? "#ffa6003c" : "transparent" }}>
           <StyledIcon src={button.icon} />
         </StyledLink>

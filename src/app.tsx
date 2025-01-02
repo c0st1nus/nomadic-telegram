@@ -1,11 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider, Navigate} from "react-router-dom";
+import {createBrowserRouter, RouterProvider, Navigate} from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
-import MainPage from "./pages/MainPage";
 import { Cart, Favourite, Home, Notification } from "./pages/Menu";
 import { Navbar } from "./components";
+import StoryPage from "./pages/StoryPage";
 
 declare global {
     interface Window {
@@ -80,6 +80,10 @@ const router = createBrowserRouter([
   {
     path: "/notification",
     element: <MainPlane><Notification /><Navbar/></MainPlane>,
+  },
+  {
+    path: "/story/:id",
+    element: <MainPlane><StoryPage/></MainPlane>,
   }
 ]);
 
