@@ -6,6 +6,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Cart, Favourite, Home, Notification } from "./pages/Menu";
 import { Navbar } from "./components";
 import StoryPage from "./pages/StoryPage";
+import InGamePage from "./pages/InGamePage";
 
 declare global {
     interface Window {
@@ -45,12 +46,11 @@ const MainPlane = styled.div`
   align-self: center;
   padding: 0;
   margin: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-width: calc(92.433vh * (9 / 16));
   height: 100vh;
-  /* width: calc(100vh * (9 / 16)); */
+  width: calc(100vh * (9 / 16));
   z-index: 1;
-  overflow-y: scroll;
   overflow-x: hidden;
   background-color: #F9F9F9;
   @media (aspect-ratio: 9/16) {
@@ -84,6 +84,10 @@ const router = createBrowserRouter([
   {
     path: "/story/:id",
     element: <MainPlane><StoryPage/></MainPlane>,
+  },
+  {
+    path: "/game/:id",
+    element: <MainPlane><InGamePage/></MainPlane>,
   }
 ]);
 

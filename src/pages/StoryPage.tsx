@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import Navbar2 from '../components/NavBar2';
 
 class Story_Class {
@@ -61,7 +61,7 @@ const StyledText = styled.p
     border-radius: 10px;
     border: 3px solid white;
 `;
-const StyledButton = styled.button
+const StyledButton = styled(NavLink)
 `
     border-radius: 10px;
     width: 50%;
@@ -71,6 +71,11 @@ const StyledButton = styled.button
     background-color: #DF941E;
     position: sticky;
     top: 85%;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const StoryPage = () => {
@@ -84,7 +89,7 @@ const StoryPage = () => {
                 </StyledTitle>
                 {stories[parseInt(id) - 1].description}
             </StyledText>
-            <StyledButton>ИГРАТЬ</StyledButton>
+            <StyledButton to={`/game/{id}`}>ИГРАТЬ</StyledButton>
             <Navbar2/>
         </StyledBackground>
     );
