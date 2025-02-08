@@ -52,7 +52,7 @@ const MainPlane = styled.div`
   width: calc(100vh * (9 / 16));
   z-index: 1;
   overflow-x: hidden;
-  background-color: #F9F9F9;
+  background-color:rgb(217, 217, 217);
   @media (aspect-ratio: 9/16) {
     border-left: 0;
     border-right: 0;

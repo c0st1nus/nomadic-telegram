@@ -34,24 +34,31 @@ const StyledHome = styled.div`
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    width: 100%;
     font-size: 2rem;
+    gap: 2vh;
 `;
 
-const HeadBackground = styled.div`
+const StyledGradient = styled.div`
+    z-index: -2;
+    background: black;
     position: absolute;
     width: 100%;
-    height: 30vh;
-    z-index: -1;
-    background-image: linear-gradient(to bottom left, #111111, #313131);
-`;
+    height: 30%;
+    top: 0;
+    left: 0;
+`
+
 
 const StyledEvent = styled.div`
-    position: flex;
-    width: 90%;
-    height: 20vh;
-    margin-top: 5vh;
-    border-radius: 3vh;
-    background-color: #E8E8E8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 70%;
+    height: 30%;
+    background-color: white;
+    border-radius: 22px;
 `;
 
 const StyledCategories = styled.div`
@@ -64,14 +71,16 @@ const StyledCategories = styled.div`
     overflow-x: auto;
     /* white-space: nowrap; */
     gap: 0vh;
+    padding: 10px;
+    border-bottom: 3px solid #0000002f;
 `;
 
 const StyledCategory = styled.button<ICategory>`
-    flex-shrink: 0;
-    padding: 1vh 2vh;
     margin: 0vh 0.5vh;
+    height: 2rem;
+    text-align: center;
     border-radius: 1vh;
-    background-color: ${props => props.activated ? "#C67C4E" : "transparent"};
+    background-color: ${props => props.activated ? "#C67C4E" : "white"};
     font-size: 1.5rem;
     cursor: pointer;
     transition: 0.3s;
@@ -83,20 +92,32 @@ const StyledStories = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     overflow-y: scroll;
-    gap: 1rem;
-    width: 90%;
-    margin-top: 2vh;
+    width: 100%;
 `;
 
 const StyledStory = styled(NavLink)`
     display: flex;
+    width: 20vh;
+    height: 30vh;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     border-radius: 1rem;
     border: 1px solid #0000002f;
     padding: 1rem;
     text-decoration: none;
+    background-color: white;
+    margin: auto;
+    margin-top: 1vh;
+    z-index: -2;
 `;
+const StyledText = styled.div
+`
+    color: white;
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+`
 
 const Home = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -121,7 +142,7 @@ const Home = () => {
     ];
 
     const stories = [
-        new Story_Class(1, "Tomiris", "Blah blah blah", "Drama", "/public/Tomiris.png"),
+        new Story_Class(1, "Tomiris", "Bsssssssssssssssssslah blah blah", "Drama", "/public/Tomiris.png"),
         new Story_Class(2, "Tomiris2", "Blah blah blah", "Comedy", "/public/Tomiris.png"),
         new Story_Class(3, "Tomiris3", "Blah blah blah", "Action", "/public/Tomiris.png"),
         new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
@@ -132,19 +153,13 @@ const Home = () => {
     
     return (
         <StyledHome>
-            <Paragraph 
-            textColor="white" 
-            size="3vh" 
-            selfAlign="start" 
-            padding="2vh 3vh"
-            >
-            Истории
-            </Paragraph>
+            <StyledGradient/>
+            <StyledText>Истории</StyledText>
             <SearchBar 
-            width="70%" 
+            width="80%" 
             height="5vh" 
             borderRadius="3vh" 
-            selfAlign="start" 
+            selfAlign="center" 
             margin="2vh 3vh" 
             background="#2A2A2A" 
             searchButtonIconSize="15vh"
@@ -155,8 +170,7 @@ const Home = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)}
             onSearchClick={() => console.log(searchValue)}
             />
-            <HeadBackground />
-            <StyledEvent />
+            <StyledEvent> Событие какоето</StyledEvent>
             <StyledCategories>
                 {categories.map((category, index) => (
                     <StyledCategory

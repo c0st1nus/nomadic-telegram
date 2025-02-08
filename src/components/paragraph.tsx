@@ -14,10 +14,8 @@ interface ParagraphProps {
 
 const DefaultProps: Partial<ParagraphProps> = {
     size: "1rem",
-    selfAlign: "center",
     textColor: "#000000",
     fontWeight: "400",
-    textAlign: "left",
     margin: "0",
     padding: "0",
     position: "static",
@@ -31,7 +29,10 @@ const StyledParagraph = styled.p<ParagraphProps>`
     margin: ${({ margin }) => margin};
     padding: ${({ padding }) => padding};
     position: ${({ position }) => position};
-    align-self: ${({ selfAlign }) => selfAlign};
+    width: 100%;
+    text-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: hidden;
 `;
 
 const Paragraph = ({...props}) => {

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Paragraph from "./paragraph";
 
 interface StoryProps {
     image: string;
@@ -11,19 +10,32 @@ interface StoryProps {
 
 const StyledStory = styled.div<StoryProps>`
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    width: 30%;
+    width: 100%;
     height: auto;
+    gap: 5px;
+`;
+const StyledText = styled.div
+`
+    color: black;
+    font-size: 1rem;
+    text-wrap: nowrap;
+    overflow: hidden;
+    width: 20vh;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 `;
 
 const StyledImage = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 1vh;
+    height: 20vh;
+    align-self: center;
+    object-fit: contain;
+    border-radius: 17px;
+    padding: 10px;
     overflow: hidden;
+    background-color:rgb(235, 234, 234);
 `;
 
 const StyledPoints = styled.div`
@@ -55,9 +67,9 @@ const Story = ({...props}: StoryProps) => {
         <StyledStory {...props}>
             <StyledImage src={props.image} alt={props.title} />
             <StyledPoints>{props.points}</StyledPoints>
-            <Paragraph>{props.title}</Paragraph>
-            <Paragraph>{props.category}</Paragraph>
-            <Paragraph>{props.description}</Paragraph>
+            <StyledText style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>{props.title}</StyledText>
+            <StyledText>{props.category}</StyledText>
+            <StyledText>{props.description}</StyledText>
         </StyledStory>
     );
 };
