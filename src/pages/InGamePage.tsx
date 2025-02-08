@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import Window, {Choice} from '../components/dialog';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Scene, {Character} from '../components/Characters';
 
 const StyledLeave = styled(NavLink)
@@ -31,26 +31,33 @@ const StyledBackground = styled.div
     background-image: url("/public/степь.jpeg");
     background-size: cover;
     z-index: 0;
+    overflow: hidden;
 `;
 const InGamePage = () => {
-    const [name, setName] = useState("Arbitrarz name");
-    const [text, setText] = useState("Lorveus aliquet libero vehicula at. Donec eget nunc non urna commodo dignissim.");
+    const [name, setName] = useState("Tomiris222");
+    const [text, setText] = useState("Lorveus aliquet libero vehicula at. Donec eget nunc  la at. Donec eget nun la at. Donec eget nun la at. Donec eget nunnon urna commodo dignissim.");
     const [isChoice, setIsChoice] = useState(true);
     const [choices, setChoices] = useState<Choice[]>([
         new Choice(true, "Premium choice text", "1", 100),
         new Choice(false, "Regular choice text", "2")
     ]);
     const [characters, setCharacters] = useState<Character[]>([
-        new Character("Tomiris", 150, { x: 0, y: 0 }, "/public/Tomiris-1.png"),
+        new Character("Tomiris", 180, { x: 0, y: -5 }, "/public/Tomiris2.png"),
+        new Character("Tomiris1", 150, { x: 50, y: -5 }, "/public/Tomirisl.png"),
     ]);
-    
     return (
         <StyledBackground>
             <StyledLeave to="/home">
-                <StyledIcon src="/public/close.svg"/>
+            <StyledIcon src="/public/close.svg"/>
             </StyledLeave>
-            <Window choices={choices} name={name} text={text} choice = {isChoice}/>
-            <Scene characters={characters} />
+            <Window 
+            height={characters.some(character => character.name === name) ? characters.find(character => character.name === name)?.height * 1.5 : undefined}
+            choices={choices} 
+            name={name} 
+            text={text} 
+            choice={isChoice} 
+            />
+            <Scene name = {name} characters={characters} />
         </StyledBackground>
     );
 };

@@ -19,18 +19,27 @@ interface CharacterProps
     name: string;
     height: number;
     position: { x: number, y: number };
+    brightness: number;
 }
 
 interface SceneProps
 {
     characters: Character[];
+    name: string;
 }
 
 const Scene = ({...props} : SceneProps) => {
     return (
         <div>
             {props.characters.map((character) => (
-                <Sprite src={character.sprite} name={character.name} height={character.height} position={character.position}/>
+            <Sprite 
+                style={{ transform: `scale(${character.name === props.name ? 1.05 : 1.0})` }} 
+                brightness={character.name === props.name ? 100 : 80} 
+                src={character.sprite} 
+                name={character.name} 
+                height={character.height} 
+                position={character.position}
+            />
             ))}
         </div>
     );
@@ -38,11 +47,13 @@ const Scene = ({...props} : SceneProps) => {
 
 const Sprite = styled.img<CharacterProps>
 `
-    height: ${props => props.height/2.5}vh;
+    height: ${props => props.height/2}vh;
+    width: auto;
     object-fit: contain;
     z-index: 1;
     position: absolute;
     left: ${props => props.position.x}%;
-    top: ${props => props.position.y}%;
+    bottom: ${props => props.position.y}%;
+    filter: brightness(${props => props.brightness}%);
 `
 export default Scene;

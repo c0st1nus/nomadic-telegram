@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import Typewriter from "./Typewriter";
 
 const StyledDialog = styled.div
 `
@@ -21,7 +22,7 @@ const StyledBorder = styled.div
     background: linear-gradient(orange, purple);
     width: 90%;
     position: absolute;
-    bottom: 0;
+    bottom: 10%;
     margin: auto;
     padding: 1px;
     border-radius: 22px;
@@ -74,6 +75,7 @@ interface DialogProps
     text: string;
     choice: boolean;
     choices?: Choice[];
+    height?: number;
 }
 
 const Window = ({...props} : DialogProps) => 
@@ -81,12 +83,12 @@ const Window = ({...props} : DialogProps) =>
         if(!props.choice)
             {
                 return (
-                    <StyledBorder>
+                    <StyledBorder style={{bottom: props.height ? props.height : "10%"}}>
                         <StyledDialog>
                             <StyledNameGradient>
                                 <StyledName>{props.name}</StyledName>
                             </StyledNameGradient>
-                                <div>{props.text}</div>
+                                <Typewriter text = {props.text} delay = {15}/>
                         </StyledDialog>
                     </StyledBorder>
                 );
@@ -98,7 +100,7 @@ const Window = ({...props} : DialogProps) =>
                     {props.choices?.map((choice: Choice) => (
                         <StyledBorder style={{position: "static", marginTop: "auto"}} key={choice.id}>
                             <StyledDialog>
-                                <div>{choice.text}</div>
+                                <Typewriter text={choice.text} delay={15}/>
                                 <img style={{objectFit:"contain", width:"10%", marginLeft:"auto", display: choice.premium ? "block" : "none"}} src="/public/diamond.png" alt="diamond" />
                             </StyledDialog>
                         </StyledBorder>
