@@ -25,11 +25,8 @@ const StyledBorder = styled.div
     margin: auto;
     padding: 1px;
     border-radius: 22px;
+    z-index: 2;
 `;
-interface ShowProps
-{
-    show: boolean;
-}
 const StyledName = styled.div
 `
     width: 100px;

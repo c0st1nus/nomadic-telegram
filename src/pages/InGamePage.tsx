@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { NavLink, useParams } from 'react-router-dom';
-import Navbar2 from '../components/NavBar2';
+import {NavLink} from 'react-router-dom';
 import Window, {Choice} from '../components/dialog';
+import { useState } from 'react';
+import Scene, {Character} from '../components/Characters';
 
 const StyledLeave = styled(NavLink)
 `
@@ -29,22 +30,27 @@ const StyledBackground = styled.div
     flex-direction: column;
     background-image: url("/public/степь.jpeg");
     background-size: cover;
+    z-index: 0;
 `;
 const InGamePage = () => {
-    const name = "Arbitrarz name";
-    const text = "Lorveus aliquet libero vehicula at. Donec eget nunc non urna commodo dignissim.";
-    const IsChoice = true;
-    const choices: Choice[] = 
-    [
+    const [name, setName] = useState("Arbitrarz name");
+    const [text, setText] = useState("Lorveus aliquet libero vehicula at. Donec eget nunc non urna commodo dignissim.");
+    const [isChoice, setIsChoice] = useState(true);
+    const [choices, setChoices] = useState<Choice[]>([
         new Choice(true, "Premium choice text", "1", 100),
         new Choice(false, "Regular choice text", "2")
-    ];
+    ]);
+    const [characters, setCharacters] = useState<Character[]>([
+        new Character("Tomiris", 150, { x: 0, y: 0 }, "/public/Tomiris-1.png"),
+    ]);
+    
     return (
         <StyledBackground>
             <StyledLeave to="/home">
                 <StyledIcon src="/public/close.svg"/>
             </StyledLeave>
-            <Window choices={choices} name={name} text={text} choice = {IsChoice}/>
+            <Window choices={choices} name={name} text={text} choice = {isChoice}/>
+            <Scene characters={characters} />
         </StyledBackground>
     );
 };
