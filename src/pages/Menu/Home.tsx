@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import { Paragraph, SearchBar, Story } from "../../components";
+import { useState, useEffect } from "react";
+import { Story } from "../../components";
 
 class Story_Class {
     public id: number;
@@ -9,7 +9,7 @@ class Story_Class {
     public description: string;
     public category: string;
     public image: string;
-    public points: number = 0;
+    // public points: number = 0;
 
     constructor(id: number, title: string, description: string, category: string, image: string) {
         this.id = id;
@@ -37,6 +37,7 @@ const StyledHome = styled.div`
     width: 100%;
     font-size: 2rem;
     gap: 2vh;
+    /* position: fixed; */
 `;
 
 const StyledGradient = styled.div`
@@ -44,39 +45,29 @@ const StyledGradient = styled.div`
     background: black;
     position: absolute;
     width: 100%;
-    height: 30%;
+    height: 17vh;
     top: 0;
-    left: 0;
-`
-
-
-const StyledEvent = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 70%;
-    height: 30%;
-    background-color: white;
-    border-radius: 22px;
+    overflow: hidden;
 `;
 
 const StyledCategories = styled.div`
+    height: 5.5vh;
     width: 100%;
     display: flex;
-    /* flex-wrap: nowrap; */
     margin-top: 1vh;
     flex-direction: row;
     z-index: 1;
     overflow-x: auto;
-    /* white-space: nowrap; */
-    gap: 0vh;
-    padding: 10px;
+    overflow-y: hidden; // Prevent vertical scroll
+    gap: 0;
+    padding: 0.7vh;
     border-bottom: 3px solid #0000002f;
+    overscroll-behavior-x: contain; // Contain horizontal scroll
+    touch-action: pan-x; // Improve touch scrolling
 `;
 
 const StyledCategory = styled.button<ICategory>`
-    margin: 0vh 0.5vh;
+    margin: 0 0.5vh;
     height: 2rem;
     text-align: center;
     border-radius: 1vh;
@@ -88,11 +79,16 @@ const StyledCategory = styled.button<ICategory>`
     border: none;
 `;
 
+
 const StyledStories = styled.div`
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden; // Prevent horizontal scroll
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    overflow-y: scroll;
-    width: 100%;
+    overscroll-behavior-y: contain; // Contain vertical scroll
+    touch-action: pan-y; // Improve touch scrolling
 `;
 
 const StyledStory = styled(NavLink)`
@@ -106,21 +102,26 @@ const StyledStory = styled(NavLink)`
     padding: 1rem;
     text-decoration: none;
     background-color: white;
-    margin: auto;
-    margin-top: 1vh;
+    margin: 1vh auto;
     z-index: -2;
 `;
-const StyledText = styled.div
-`
+
+const StyledText = styled.div`
     color: white;
     font-size: 2rem;
     width: 100%;
     text-align: center;
     margin-top: 20px;
-`
+`;
 
 const Home = () => {
-    const [searchValue, setSearchValue] = useState("");
+    // Add useEffect to control body overflow
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'visible';
+        };
+    }, []);
     const [activeCategory, setActiveCategory] = useState<string | null>(null);
     const [currentCategory, setCurrentCategory] = useState(DefaultCategory);
 
@@ -129,10 +130,11 @@ const Home = () => {
         setActiveCategory(newCategory);
         setCurrentCategory({
             ...currentCategory,
-            activated: newCategory ? true : false
+            activated: Boolean(newCategory)
         });
         console.log(newCategory);
     };
+
     const categories = [
         "Drama",
         "Comedy",
@@ -146,57 +148,42 @@ const Home = () => {
         new Story_Class(2, "Tomiris2", "Blah blah blah", "Comedy", "/public/Tomiris.png"),
         new Story_Class(3, "Tomiris3", "Blah blah blah", "Action", "/public/Tomiris.png"),
         new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
-        new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
-        new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
-
+        new Story_Class(5, "Tomiris5", "Blah blah blah", "Horror", "/public/Tomiris.png"),
+        new Story_Class(6, "Tomiris6", "Blah blah blah", "Horror", "/public/Tomiris.png"),
     ];
     
     return (
         <StyledHome>
-            <StyledGradient/>
+            <StyledGradient />
             <StyledText>Истории</StyledText>
-            <SearchBar 
-            width="80%" 
-            height="5vh" 
-            borderRadius="3vh" 
-            selfAlign="center" 
-            margin="2vh 3vh" 
-            background="#2A2A2A" 
-            searchButtonIconSize="15vh"
-            searchButtonIcon="/public/Search.svg"
-            inputPadding="1vh"
-            textColor="white"
-            value={searchValue}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)}
-            onSearchClick={() => console.log(searchValue)}
-            />
-            <StyledEvent> Событие какоето</StyledEvent>
             <StyledCategories>
                 {categories.map((category, index) => (
                     <StyledCategory
-                      key={index}
-                      onClick={() => handleCategoryClick(category)}
-                      activated={activeCategory === category}
+                        key={index}
+                        onClick={() => handleCategoryClick(category)}
+                        activated={activeCategory === category}
                     >
-                      {category}
+                        {category}
                     </StyledCategory>
                 ))}
             </StyledCategories>
             <StyledStories>
-                {stories.map((story) => (
-                    <StyledStory to={`/story/${story.id}`} key={story.id}>
-                        <Story 
-                          image={story.image}
-                          title={story.title}
-                          description={story.description}
-                          category={story.category}
-                          points={story.points}
-                        />
-                    </StyledStory>
-                ))}
+                {stories
+                    .filter((story) => !activeCategory || story.category === activeCategory)
+                    .map((story) => (
+                        <StyledStory to={`/story/${story.id}`} key={story.id}>
+                            <Story
+                                image={story.image}
+                                title={story.title}
+                                description={story.description}
+                                category={story.category}
+                            />
+                        </StyledStory>
+                    ))}
+                <br/><br/>
             </StyledStories>
         </StyledHome>
     );
-}
+};
 
 export default Home;

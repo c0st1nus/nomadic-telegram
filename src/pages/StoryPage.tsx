@@ -29,8 +29,7 @@ const stories = [
 
 ];
 
-const StyledBackground = styled.div
-`
+const StyledBackground = styled.div`
     padding-top: 20px;
     width: 100%;
     height: 100%;
@@ -41,19 +40,19 @@ const StyledBackground = styled.div
     background-image: url("/public/back 1.svg");
     background-size: cover;
 `;
-const StyledLogo = styled.img
-`
+
+const StyledLogo = styled.img`
     z-index: 0;
     width: 85%;
-    obdject-fit: contain;
+    /* obdject-fit: contain; */
 `;
-const StyledTitle = styled.p
-`
+
+const StyledTitle = styled.p`
     font-size: 2rem;
     margin: 0px;
 `
-const StyledText = styled.p
-`
+
+const StyledText = styled.p`
     background-color:rgba(255, 255, 255, 0.8);
     font-size: 1rem;
     width: 85%;
@@ -61,8 +60,8 @@ const StyledText = styled.p
     border-radius: 10px;
     border: 3px solid white;
 `;
-const StyledButton = styled(NavLink)
-`
+
+const StyledButton = styled(NavLink)`
     border-radius: 10px;
     width: 50%;
     height: 5%;
@@ -80,16 +79,21 @@ const StyledButton = styled(NavLink)
 
 const StoryPage = () => {
     const { id } = useParams<{ id: string }>();
+    if (!id) {
+        return <div>Error: Story id is missing.</div>;
+    }
+    const storyIndex = parseInt(id) - 1;
+    const story = stories[storyIndex];
     return (
         <StyledBackground>
-            <StyledLogo src={stories[parseInt(id) - 1].image} />
+            <StyledLogo src={story.image} />
             <StyledText>
                 <StyledTitle>
-                    {stories[parseInt(id) - 1].title}
+                    {story.title}
                 </StyledTitle>
-                {stories[parseInt(id) - 1].description}
+                {story.description}
             </StyledText>
-            <StyledButton to={`/game/{id}`}>ИГРАТЬ</StyledButton>
+            <StyledButton to={`/game/${id}`}>ИГРАТЬ</StyledButton>
             <Navbar2/>
         </StyledBackground>
     );

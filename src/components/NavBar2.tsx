@@ -27,21 +27,30 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Navbar2 = () => {
-    const buttons = [
-        { name: "close", icon: "/public/close.svg", path: "/home" },
-        { name: "home", icon: "/public/home.svg", path: "/home" },
-        { name: "settings", icon: "/public/settings.svg", path: "/home" },
-    ];
-    return (
-    <StyledNavbar>
-        {buttons.map((button) => (
-        <StyledLink key={button.name} to={button.path} style={{ backgroundColor: button.path.includes(useLocation().pathname) ? "#ffa6003c" : "transparent" }}>
-          <StyledIcon src={button.icon} />
-        </StyledLink>
-        ))}
+  const location = useLocation();
+  const buttons = [
+      { name: "close", icon: "/public/close.svg", path: "/home" },
+      { name: "home", icon: "/public/home.svg", path: "/home" },
+      { name: "settings", icon: "/public/settings.svg", path: "/home" },
+  ];
 
-    </StyledNavbar>
-    );
+  return (
+      <StyledNavbar>
+          {buttons.map((button) => (
+              <StyledLink 
+                  key={button.name} 
+                  to={button.path} 
+                  style={{ 
+                      backgroundColor: button.path === location.pathname 
+                          ? "#ffa6003c" 
+                          : "transparent" 
+                  }}
+              >
+                  <StyledIcon src={button.icon} />
+              </StyledLink>
+          ))}
+      </StyledNavbar>
+  );
 };
 
 export default Navbar2;

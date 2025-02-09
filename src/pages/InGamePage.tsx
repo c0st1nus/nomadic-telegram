@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import Window, {Choice} from '../components/dialog';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Scene, {Character} from '../components/Characters';
 
-const StyledLeave = styled(NavLink)
-`
+const StyledLeave = styled(NavLink)`
     position: absolute;
     left: 0;
     top: 0;
@@ -13,14 +13,14 @@ const StyledLeave = styled(NavLink)
     text-decoration: none;
     color: black;
 `
-const StyledIcon = styled.img
-`
+
+const StyledIcon = styled.img`
     height: 5vh;
     width: 5vh;
     object-fit: contain;
 `;
-const StyledBackground = styled.div
-`
+
+const StyledBackground = styled.div`
     padding-top: 20px;
     width: 100%;
     height: 100%;
@@ -33,6 +33,7 @@ const StyledBackground = styled.div
     z-index: 0;
     overflow: hidden;
 `;
+
 const InGamePage = () => {
     const [name, setName] = useState("Tomiris222");
     const [text, setText] = useState("Lorveus aliquet libero vehicula at. Donec eget nunc  la at. Donec eget nun la at. Donec eget nun la at. Donec eget nunnon urna commodo dignissim.");
@@ -51,7 +52,12 @@ const InGamePage = () => {
             <StyledIcon src="/public/close.svg"/>
             </StyledLeave>
             <Window 
-            height={characters.some(character => character.name === name) ? characters.find(character => character.name === name)?.height * 1.5 : undefined}
+            height={
+                (() => {
+                    const currentCharacter = characters.find(character => character.name === name);
+                    return currentCharacter ? currentCharacter.height * 1.5 : undefined;
+                })()
+            }
             choices={choices} 
             name={name} 
             text={text} 

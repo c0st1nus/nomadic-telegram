@@ -28,6 +28,7 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Navbar = () => {
+    const location = useLocation();
     const buttons = [
         { name: "home", icon: "/public/home.svg", path: "/home" },
         { name: "heart", icon: "/public/heart.svg", path: "/favourite" },
@@ -37,7 +38,7 @@ const Navbar = () => {
     return (
     <StyledNavbar>
         {buttons.map((button) => (
-        <StyledLink key={button.name} to={button.path} style={{ backgroundColor: button.path.includes(useLocation().pathname) ? "#ffa6003c" : "transparent" }}>
+        <StyledLink key={button.name} to={button.path} style={{ backgroundColor: button.path == location.pathname ? "#ffa6003c" : "transparent" }}>
           <StyledIcon src={button.icon} />
         </StyledLink>
         ))}

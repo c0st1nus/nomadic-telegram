@@ -1,11 +1,9 @@
-import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Typewriter from "./Typewriter";
 
-const StyledDialog = styled.div
-`
+const StyledDialog = styled.div`
     width: calc(100% - 1px);
-    text-wrap: wrap;
+    /* text-wrap: wrap; */
     word-wrap: break-word;
     white-space: wrap;
     border-radius: 22px;
@@ -15,8 +13,9 @@ const StyledDialog = styled.div
     display: flex;
     align-items: center;
 `;
-const StyledBorder = styled.div
-`   display: flex;
+
+const StyledBorder = styled.div`   
+    display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(orange, purple);
@@ -28,21 +27,20 @@ const StyledBorder = styled.div
     border-radius: 22px;
     z-index: 2;
 `;
-const StyledName = styled.div
-`
+
+const StyledName = styled.div`
     width: 100px;
     font-size: 1rem;
     border-radius: 22px;
     background-color: #FFFFFF;
     padding: 10px;
     overflow: hidden;
-    text-wrap: nowrap;
+    /* text-wrap: nowrap; */
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: center;
 `
-const StyledNameGradient = styled.div
-`
+const StyledNameGradient = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;

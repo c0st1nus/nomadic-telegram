@@ -45,8 +45,7 @@ const Scene = ({...props} : SceneProps) => {
     );
 }
 
-const Sprite = styled.img<CharacterProps>
-`
+const Sprite = styled.img<CharacterProps>`
     height: ${props => props.height/2}vh;
     width: auto;
     object-fit: contain;

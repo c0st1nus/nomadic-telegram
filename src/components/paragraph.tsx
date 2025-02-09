@@ -30,7 +30,7 @@ const StyledParagraph = styled.p<ParagraphProps>`
     padding: ${({ padding }) => padding};
     position: ${({ position }) => position};
     width: 100%;
-    text-wrap: nowrap;
+    /* text-wrap: nowrap; */
     white-space: nowrap;
     text-overflow: hidden;
 `;
