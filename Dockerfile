@@ -1,22 +1,23 @@
-# Build stage
 FROM node:22 AS builder
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm ci
+COPY package.json ./
 
-# Copy remaining source code
-COPY . .
+RUN npm i
 
-# Build the React project using Vite
+
+COPY src ./src
+COPY public ./public
+COPY vite.config.ts ./
+COPY tsconfig.app.json ./
+COPY tsconfig.node.json ./
+COPY tsconfig.json ./
+COPY index.html ./
+
 RUN npm run build
 
-# Production stage: serve built files with Nginx
 FROM nginx:alpine
-# Copy built output from builder stage to Nginx html folder
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 80 and start Nginx
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

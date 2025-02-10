@@ -99,7 +99,7 @@ const Window = ({...props} : DialogProps) =>
                         <StyledBorder style={{position: "static", marginTop: "auto"}} key={choice.id}>
                             <StyledDialog>
                                 <Typewriter text={choice.text} delay={15}/>
-                                <img style={{objectFit:"contain", width:"10%", marginLeft:"auto", display: choice.premium ? "block" : "none"}} src="/public/diamond.png" alt="diamond" />
+                                <img style={{objectFit:"contain", width:"10%", marginLeft:"auto", display: choice.premium ? "block" : "none"}} src="diamond.png" alt="diamond" />
                             </StyledDialog>
                         </StyledBorder>
                     ))}

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "vite",
     "dev": "concurrently \"ngrok http --url=assured-bluebird-exotic.ngrok-free.app 5173\" \"vite\"",
+    "localdev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

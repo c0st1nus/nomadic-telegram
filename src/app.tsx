@@ -10,7 +10,7 @@ import InGamePage from "./pages/InGamePage";
 
 declare global {
     interface Window {
-        Telegram: any;
+        Telegram: unknown;
     }
 }
 
@@ -91,9 +91,15 @@ const router = createBrowserRouter([
   }
 ]);
 
-createRoot(document.getElementById("root") as HTMLElement).render(
+function App() {
+  return (
     <React.StrictMode>
       <GlobalStyle />
       <RouterProvider router={router}/>
     </React.StrictMode>
   );
+}
+
+export default App;
+
+createRoot(document.getElementById("root") as HTMLElement).render(<App />);

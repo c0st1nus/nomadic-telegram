@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import Window, {Choice} from '../components/dialog';
@@ -28,28 +27,28 @@ const StyledBackground = styled.div`
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-image: url("/public/степь.jpeg");
+    background-image: url("степь.jpeg");
     background-size: cover;
     z-index: 0;
     overflow: hidden;
 `;
 
 const InGamePage = () => {
-    const [name, setName] = useState("Tomiris222");
-    const [text, setText] = useState("Lorveus aliquet libero vehicula at. Donec eget nunc  la at. Donec eget nun la at. Donec eget nun la at. Donec eget nunnon urna commodo dignissim.");
-    const [isChoice, setIsChoice] = useState(true);
-    const [choices, setChoices] = useState<Choice[]>([
-        new Choice(true, "Premium choice text", "1", 100),
-        new Choice(false, "Regular choice text", "2")
-    ]);
-    const [characters, setCharacters] = useState<Character[]>([
-        new Character("Tomiris", 180, { x: 0, y: -5 }, "/public/Tomiris2.png"),
-        new Character("Tomiris1", 150, { x: 50, y: -5 }, "/public/Tomirisl.png"),
-    ]);
+    const [name] = useState("Tomiris222");
+    const [text] = useState("Lorveus aliquet libero vehicula at. Donec eget nunc  la at. Donec eget nun la at. Donec eget nun la at. Donec eget nunnon urna commodo dignissim.");
+    const [isChoice] = useState(true);
+    const [choices] = useState<Choice[]>([
+            new Choice(true, "Premium choice text", "1", 100),
+            new Choice(false, "Regular choice text", "2")
+        ]);
+    const [characters] = useState<Character[]>([
+            new Character("Tomiris", 180, { x: 0, y: -5 }, "./Tomiris2.png"),
+            new Character("Tomiris1", 150, { x: 50, y: -5 }, "./Tomirisl.png"),
+        ]);
     return (
         <StyledBackground>
             <StyledLeave to="/home">
-            <StyledIcon src="/public/close.svg"/>
+            <StyledIcon src="./close.svg"/>
             </StyledLeave>
             <Window 
             height={

@@ -20,12 +20,12 @@ class Story_Class {
 };
 
 const stories = [
-    new Story_Class(1, "Tomiris", "Blah blah blah", "Drama", "/public/Tomiris.png"),
-    new Story_Class(2, "Tomiris2", "Blah blah blah", "Comedy", "/public/История_ Томирис.svg"),
-    new Story_Class(3, "Tomiris3", "Blah blah blah", "Action", "/public/Tomiris.png"),
-    new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
-    new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
-    new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
+    new Story_Class(1, "Tomiris", "Blah blah blah", "Drama", "Tomiris.png"),
+    new Story_Class(2, "Tomiris2", "Blah blah blah", "Comedy", "История_ Томирис.svg"),
+    new Story_Class(3, "Tomiris3", "Blah blah blah", "Action", "Tomiris.png"),
+    new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "Tomiris.png"),
+    new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "Tomiris.png"),
+    new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "Tomiris.png"),
 
 ];
 
@@ -37,7 +37,7 @@ const StyledBackground = styled.div`
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-image: url("/public/back 1.svg");
+    background-image: url("back 1.svg");
     background-size: cover;
 `;
 

@@ -29,9 +29,9 @@ const StyledLink = styled(NavLink)`
 const Navbar2 = () => {
   const location = useLocation();
   const buttons = [
-      { name: "close", icon: "/public/close.svg", path: "/home" },
-      { name: "home", icon: "/public/home.svg", path: "/home" },
-      { name: "settings", icon: "/public/settings.svg", path: "/home" },
+      { name: "close", icon: "close.svg", path: "/home" },
+      { name: "home", icon: "Home.svg", path: "/home" },
+      { name: "settings", icon: "settings.svg", path: "/home" },
   ];
 
   return (

@@ -144,12 +144,12 @@ const Home = () => {
     ];
 
     const stories = [
-        new Story_Class(1, "Tomiris", "Bsssssssssssssssssslah blah blah", "Drama", "/public/Tomiris.png"),
-        new Story_Class(2, "Tomiris2", "Blah blah blah", "Comedy", "/public/Tomiris.png"),
-        new Story_Class(3, "Tomiris3", "Blah blah blah", "Action", "/public/Tomiris.png"),
-        new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "/public/Tomiris.png"),
-        new Story_Class(5, "Tomiris5", "Blah blah blah", "Horror", "/public/Tomiris.png"),
-        new Story_Class(6, "Tomiris6", "Blah blah blah", "Horror", "/public/Tomiris.png"),
+        new Story_Class(1, "Tomiris", "Bsssssssssssssssssslah blah blah", "Drama", "Tomiris.png"),
+        new Story_Class(2, "Tomiris2", "Blah blah blah", "Comedy", "Tomiris.png"),
+        new Story_Class(3, "Tomiris3", "Blah blah blah", "Action", "Tomiris.png"),
+        new Story_Class(4, "Tomiris4", "Blah blah blah", "Horror", "Tomiris.png"),
+        new Story_Class(5, "Tomiris5", "Blah blah blah", "Horror", "Tomiris.png"),
+        new Story_Class(6, "Tomiris6", "Blah blah blah", "Horror", "Tomiris.png"),
     ];
     
     return (

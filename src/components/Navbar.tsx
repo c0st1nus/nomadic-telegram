@@ -30,10 +30,10 @@ const StyledLink = styled(NavLink)`
 const Navbar = () => {
     const location = useLocation();
     const buttons = [
-        { name: "home", icon: "/public/home.svg", path: "/home" },
-        { name: "heart", icon: "/public/heart.svg", path: "/favourite" },
-        { name: "bag", icon: "/public/bag.svg", path: "/cart" },
-        { name: "notification", icon: "/public/notification.svg", path: "/notification" },
+        { name: "home", icon: "Home.svg", path: "/home" },
+        { name: "heart", icon: "Heart.svg", path: "/favourite" },
+        { name: "bag", icon: "Bag.svg", path: "/cart" },
+        { name: "notification", icon: "Notification.svg", path: "/notification" },
     ];
     return (
     <StyledNavbar>
